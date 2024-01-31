@@ -18,6 +18,11 @@ jobs:
       with:
         python-version: 3.x
 
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install Flask  # Install Flask
+
     - name: Run tests
       run: |
         python hello.py  # Run the Flask app
