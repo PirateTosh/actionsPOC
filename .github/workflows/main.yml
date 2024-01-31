@@ -23,6 +23,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install Flask  # Install Flask
 
-    - name: Run tests
+    - name: Run
       run: |
         python run.py
