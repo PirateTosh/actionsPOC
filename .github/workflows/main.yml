@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -25,4 +25,28 @@ jobs:
 
     - name: Run
       run: |
-        python run.py
+        python run.py &
+
+    - name: Wait for Flask server to start
+      run: sleep 10s
+
+    - name: Run test cases
+      run : |
+        python test.py
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+    - name: Deploy to Local Machine
+      run: |
+        # Replace 'your_local_username' and 'your_local_ip' with your machine's details
+        scp -r ./* your_local_username@your_local_ip:/path/to/deployment/directory

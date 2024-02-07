@@ -1,9 +1,7 @@
 ### Prerequisites
 - Python 3.x installed on your system.
 
-## Getting Started
-
-Open your command line and navigate to the "api" directory, "Path_of_the_Project\api" and 
+Open your command line and navigate to the directory where you want to create your project
 Then, run the following commands:
 
  # For Unix or MacOS
@@ -14,11 +12,10 @@ Then, run the following commands:
 # For Windows
 >> python -m venv venv
 
->> venv/scripts/activate
+>> venv\Scripts\activate
 
 Now run the following command to install all required lib for this project (written in requirements.txt) : 
-
->> pip install -r requirements.txt
+>> pip3 install -r requirements.txt
 
 To Run the application:
-    python run.py to run backend code.
+>> python3 run.py
