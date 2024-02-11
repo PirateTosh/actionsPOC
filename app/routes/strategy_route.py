@@ -28,6 +28,11 @@ unrealised_pl = 0.0
 active_orders = []
 
 
+@app.route("/omegaTron_test", methods=["GET"])
+def execute_print():
+    return "API endpoint reached"
+
+
 @app.route("/omegaTron_strategy", methods=["POST"])
 def execute_omegaTron_strategy():
     global strategy_executed  # To modify the flag inside the function
