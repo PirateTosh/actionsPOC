@@ -1,8 +1,6 @@
 import requests
 
-url = (
-    "http://localhost:5000/omegaTron_test"  # Replace <port> with the actual port number
-)
+url = "http://localhost:5000/omegaTron_test"
 response = requests.get(url)
 
 if response.status_code == 200:

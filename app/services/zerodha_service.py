@@ -36,63 +36,7 @@ def find_chrome_binary():
 
 
 def login_in_zerodha():
-    driver = None
-    system_platform = platform.system()
-    if system_platform in "Linux":
-        chrome_options = uc.ChromeOptions()
-        chrome_binary_path = find_chrome_binary()
-        chrome_options.binary_location = chrome_binary_path
-    try:
-        if system_platform in "Linux":
-            driver = uc.Chrome(options=chrome_options)
-        else:
-            driver = uc.Chrome()
-
-        driver.get(f"https://kite.trade/connect/login?api_key={ZERODHA_API_KEY}&v=3")
-        login_id = WebDriverWait(driver, 10).until(
-            lambda x: x.find_element("xpath", '//*[@id="userid"]')
-        )
-        login_id.send_keys(ZERODHA_USER_ID)
-
-        pwd = WebDriverWait(driver, 10).until(
-            lambda x: x.find_element("xpath", '//*[@id="password"]')
-        )
-        pwd.send_keys(ZERODHA_USER_PWD)
-
-        submit = WebDriverWait(driver, 10).until(
-            lambda x: x.find_element(
-                "xpath", '//*[@id="container"]/div/div/div[2]/form/div[4]/button'
-            )
-        )
-        submit.click()
-
-        time.sleep(1)
-        # adjustment to code to include totp
-        totp = WebDriverWait(driver, 10).until(
-            lambda x: x.find_element("xpath", '//*[@id="userid"]')
-        )
-        authkey = pyotp.TOTP(ZERODHA_TOTP_KEY)
-        totp.send_keys(authkey.now())
-        time.sleep(1)
-
-        url = driver.current_url
-        initial_token = url.split("request_token=")[1]
-        request_token = initial_token.split("&")[0]
-
-        kite = KiteConnect(api_key=ZERODHA_API_KEY)
-
-        data = kite.generate_session(
-            request_token,
-            api_secret=ZERODHA_API_SECRET,
-        )
-        kite.set_access_token(data["access_token"])
-
-        return kite
-    except Exception as e:
-        logging.info("Exception logging in: {e}")
-        return None
-    finally:
-        driver.close()
+    pass
 
 
 def send_telegram_message(message):
