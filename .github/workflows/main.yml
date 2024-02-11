@@ -32,7 +32,7 @@ jobs:
 
     - name: Verify Flask server is running
       run: |
-        $response = Invoke-WebRequest -Uri http://localhost:5000/omegaTron_test
+        $response = Invoke-WebRequest -Uri http://localhost/omegaTron_test
         if ($response.StatusCode -eq 200) {
           Write-Output "Flask server is running"
         } else {
