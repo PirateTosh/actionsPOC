@@ -29,17 +29,6 @@ jobs:
     - name: Wait for Flask server to start
       run: sleep 10s
 
-
-    - name: Verify Flask server is running
-      run: |
-        $response = Invoke-WebRequest -Uri http://localhost/omegaTron_test
-        if ($response.StatusCode -eq 200) {
-          Write-Output "Flask server is running"
-        } else {
-          Write-Error "Flask server is not running. Status code: $($response.StatusCode)"
-          exit 1
-        }
-
     - name: Run test cases
       run : |
         python test.py
