@@ -5,7 +5,7 @@ flask_cors
 setuptools
 kiteconnect
 pyotp
-# undetected_chromedriver
+undetected_chromedriver
 selenium
 fyers-apiv3
 botocore==1.34.7
