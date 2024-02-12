@@ -33,6 +33,7 @@ jobs:
     - name: Run test cases
       run : |
         pwd
+        cd api/tests
         python test.py
 
   deploy:
