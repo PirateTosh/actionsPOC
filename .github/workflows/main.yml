@@ -32,6 +32,7 @@ jobs:
 
     - name: Run test cases
       run : |
+        pwd
         python test.py
 
   deploy:
