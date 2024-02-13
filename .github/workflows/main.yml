@@ -51,4 +51,4 @@ jobs:
     - name: Deploy to Local Machine
       run: |
         # Replace 'your_local_username' and 'your_local_ip' with your machine's details
-        scp -r ./* your_local_username@your_local_ip:/path/to/deployment/directory
+        scp -r ./* root@103.240.91.206:/opt/
