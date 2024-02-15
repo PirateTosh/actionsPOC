@@ -49,7 +49,7 @@ jobs:
         with:
           IP: 103.240.91.206
           USER: root
-          KEY: Z!Xi%His9@ns
+          KEY: ${{ secrets.DEPLOY_NEW }}
           FOLDER: "/root/test/"
           COMMANDS: |
             ls -a
