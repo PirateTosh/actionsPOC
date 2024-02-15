@@ -43,14 +43,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Accept Host Key
+      run: ssh-keyscan -H server_ip >> ~/.ssh/known_hosts
+    
       
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.4
       with:
         ssh-private-key: ${{ secrets.DEPLOY_NEW }}
 
-    - name: Accept Host Key
-      run: ssh-keyscan -H server_ip >> ~/.ssh/known_hosts
     
     - name: Check and add host key
       run: ssh-keyscan -H 103.240.91.206 >> ~/.ssh/known_hosts
