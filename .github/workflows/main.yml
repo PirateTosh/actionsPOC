@@ -48,7 +48,10 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.4
       with:
         ssh-private-key: ${{ secrets.DEPLOY_NEW }}
-        
+    
+    - name: Check and add host key
+      run: ssh-keyscan -H 103.240.91.206 >> ~/.ssh/known_hosts
+
     - name: Copy files to server
       run: scp -r ./* root@103.240.91.206:/opt/
 
