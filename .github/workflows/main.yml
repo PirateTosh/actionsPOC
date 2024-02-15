@@ -43,14 +43,14 @@ jobs:
 
     - name: 💞 Github actions...
         uses: actions/checkout@v3
-      - name: 🌈 Deploy with ssh...
-        uses: sebastianjnuwu/ssh-action-deploy@v3
-        with:
-          IP: 103.240.91.206
-          USER: root
-          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          FOLDER: "/root/test/"
-          RUN: "ls -a; pwd"
+    - name: 🌈 Deploy with ssh...
+      uses: sebastianjnuwu/ssh-action-deploy@v3
+      with:
+        IP: 103.240.91.206
+        USER: root
+        KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        FOLDER: "/root/test/"
+        RUN: "ls -a; pwd"
 
     # - name: 🚚 Get Latest Code
     #   uses: actions/checkout@v3
