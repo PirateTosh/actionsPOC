@@ -40,19 +40,32 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
 
-    - name: Install SSH client
-      run: |
-        sudo apt update
-        sudo apt install openssh-client -y
+    name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: 103.240.91.206
+        username: root
+        password: Z!Xi%His9@ns
+        port: 22
+        server-dir:/opt/
 
-    - name: Add known hosts
-      run: |
-        ssh-keyscan 103.240.91.206 >> ~/.ssh/known_hosts
+    # - name: Checkout Repository
+    #   uses: actions/checkout@v2
 
-    - name: Deploy to Local Machine
-      run: |
-        # Replace 'your_local_username' and 'your_local_ip' with your machine's details
-        scp -r ./* root@103.240.91.206:/opt/
+    # - name: Install SSH client
+    #   run: |
+    #     sudo apt update
+    #     sudo apt install openssh-client -y
+
+    # - name: Add known hosts
+    #   run: |
+    #     ssh-keyscan 103.240.91.206 >> ~/.ssh/known_hosts
+
+    # - name: Deploy to Local Machine
+    #   run: |
+    #     # Replace 'your_local_username' and 'your_local_ip' with your machine's details
+    #     scp -r ./* root@103.240.91.206:/opt/
