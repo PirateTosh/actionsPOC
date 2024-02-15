@@ -46,7 +46,7 @@ jobs:
       
     - name: Set up SSH
       run: |
-        sshpass -p 'your_password' ssh root@103.240.91.206
+        sshpass -p 'Z!Xi%His9@ns' ssh root@103.240.91.206
 
 
 
