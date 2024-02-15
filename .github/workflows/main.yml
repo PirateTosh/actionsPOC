@@ -53,7 +53,7 @@ jobs:
       run: ssh-keyscan -H 103.240.91.206 >> ~/.ssh/known_hosts
 
     - name: Copy files to server
-      run: scp -r ./* root@103.240.91.206:/opt/
+      run: sudo scp -r ./* root@103.240.91.206:/opt/
 
 
     # - name: 🚚 Get Latest Code
