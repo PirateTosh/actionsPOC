@@ -51,7 +51,7 @@ jobs:
         username: root
         password: Z!Xi%His9@ns
         port: 22
-        server-dir:/opt/
+        server-dir: /opt/
 
     # - name: Checkout Repository
     #   uses: actions/checkout@v2
