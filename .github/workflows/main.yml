@@ -18,11 +18,7 @@ jobs:
 
       - name: Copy files to another folder
         run: |
-          ls /home/runner
-        run: |
           cp -r * /home/runner
-        run: |
-          ls /home/runner
       
       - name: deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
