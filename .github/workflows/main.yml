@@ -10,18 +10,18 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v4
-      
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Checkout
+        uses: actions/checkout@v2
+        - name: Deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: 103.240.91.206
-          username: root
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps-legacy
-          port: 22
-          server-dir: /opt/poc/
+            username: ${{ secrets.FTP_USERNAME }}
+            server: ${{ secrets.FTP_SERVER }}
+            port: ${{ secrets.FTP_PORT }}
+            local_path: './static/*'
+            remote_path: '/opt/poc'
+            sftp_only: true
+            password: ${{ secrets.FTP_PASSWORD }}
     
     ########## Approach 1 ############## START
     # - name: Checkout code
