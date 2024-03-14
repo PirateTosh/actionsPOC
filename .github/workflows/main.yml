@@ -19,19 +19,20 @@ jobs:
       - name: Copy files to another folder
         run: |
           ls /home/runner
+        run: |
           cp -r * /home/runner
+        run: |
           ls /home/runner
       
-      - name: Deploy file
+      - name: deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          username: ${{ secrets.FTP_USERNAME }}
-          server: ${{ secrets.FTP_SERVER }}
-          port: ${{ secrets.FTP_PORT }}
-          local_path: '/home/runner'
-          remote_path: '/opt/poc'
-          sftp_only: true
-          password: ${{ secrets.FTP_PASSWORD }}
+            username: 'root'
+            server: '103.240.91.206'
+            ssh_private_key: ${{ secrets.DEPLOY_NEW }} 
+            local_path: '/home/runner/*'
+            remote_path: '/opt/poc/'
+            sftpArgs: '-o ConnectTimeout=5'
     
     ########## Approach 1 ############## START
     # - name: Checkout code
