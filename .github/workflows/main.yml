@@ -18,8 +18,9 @@ jobs:
 
       - name: Copy files to another folder
         run: |
-          cp -r * /opt/
-          ls /opt
+          ls /home/runner
+          cp -r * /home/runner
+          ls /home/runner
       
       - name: Deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -27,7 +28,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           server: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
-          local_path: '/opt/api'
+          local_path: '/home/runner'
           remote_path: '/opt/poc'
           sftp_only: true
           password: ${{ secrets.FTP_PASSWORD }}
