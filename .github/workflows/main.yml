@@ -41,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     # needs: build
     steps:
+
+    ########## Approach 1 ############## START
     # - name: Checkout code
     #   uses: actions/checkout@v2
 
@@ -60,31 +62,56 @@ jobs:
     # - name: Copy files to server
     #   run: sudo scp -r ./* root@103.240.91.206:/opt/
 
+    ########## Approach 1 ############## END
 
-    - name: 🚚 Get Latest Code
-      uses: actions/checkout@v3
+    ########## Approach 2 ############## START
+
+    # - name: 🚚 Get Latest Code
+    #   uses: actions/checkout@v3
     
-    - name: 📂 Sync Files
-      uses: SamKirkland/web-deploy@v1
+    # - name: 📂 Sync Files
+    #   uses: SamKirkland/web-deploy@v1
+    #   with:
+    #     target-server: 103.240.91.206
+    #     remote-user: root
+    #     private-ssh-key: ${{ secrets.DEPLOY_SSH_KEY }}
+    #     destination-path: ~/opt/
+
+    # - name: Checkout Repository
+    #   uses: actions/checkout@v2
+
+    # - name: Install SSH client
+    #   run: |
+    #     sudo apt update
+    #     sudo apt install openssh-client -y
+
+    # - name: Add known hosts
+    #   run: |
+    #     ssh-keyscan 103.240.91.206 >> ~/.ssh/known_hosts
+
+    # - name: Deploy to Local Machine
+    #   run: |
+    #     # Replace 'your_local_username' and 'your_local_ip' with your machine's details
+    #     scp -r ./* root@103.240.91.206:/opt/
+
+    ########## Approach 2 ############## END
+
+    ########## Approach 3 ############## START
+
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        target-server: 103.240.91.206
-        remote-user: root
-        private-ssh-key: ${{ secrets.DEPLOY_SSH_KEY }}
-        destination-path: ~/opt/
+        server: 103.240.91.206
+        username: root
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        port: 22
+        server-dir: /opt/poc
 
-    - name: Checkout Repository
-      uses: actions/checkout@v2
 
-    - name: Install SSH client
-      run: |
-        sudo apt update
-        sudo apt install openssh-client -y
-
-    - name: Add known hosts
-      run: |
-        ssh-keyscan 103.240.91.206 >> ~/.ssh/known_hosts
-
-    - name: Deploy to Local Machine
-      run: |
-        # Replace 'your_local_username' and 'your_local_ip' with your machine's details
-        scp -r ./* root@103.240.91.206:/opt/
