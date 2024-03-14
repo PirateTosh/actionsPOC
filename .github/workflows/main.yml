@@ -19,6 +19,7 @@ jobs:
       - name: Copy files to another folder
         run: |
           cp -r * /opt/
+          ls /opt
       
       - name: Deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
