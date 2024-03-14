@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 22
-          server-dir: /opt/poc
+          server-dir: /opt/poc/
     
     ########## Approach 1 ############## START
     # - name: Checkout code
