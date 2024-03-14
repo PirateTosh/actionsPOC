@@ -19,7 +19,7 @@ jobs:
           server: 103.240.91.206
           username: root
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: sftp
+          protocol: ftps-legacy
           port: 22
           server-dir: /opt/poc/
     
